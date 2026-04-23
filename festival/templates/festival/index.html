@@ -1,11 +1,16 @@
 {% extends 'festival/layout.html' %}
 
 {% block content %}
-
-{% load static %}    
-<img src="{% static 'festival/nos-alive-big.jpg' %}" width="100%" alt="NOS Alive">
-<p>O NOS Alive está de regresso em 2026 nos dias 9, 10 e 11 de julho, no Passeio Maritimo de Alges. Bilhetes em breve.</p>
-
-
+    {% if dias %}
+        <h2>Dias do Festival</h2>
+        <ul>
+            {% for dia in dias %}
+                <li><a href="{% url 'festival:dia' dia.id %}">{{ dia.data }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% load static %}
+        <img src="{% static 'festival/nos-alive-big.jpg' %}" width="100%" alt="NOS Alive">
+        <p>O NOS Alive está de regresso em 2026!</p>
+    {% endif %}
 {% endblock %}
-    
